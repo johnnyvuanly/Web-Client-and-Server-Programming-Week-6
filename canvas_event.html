@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Added a style just to see where the canvas is -->
+        <style>
+            canvas {
+                border: 1px black solid
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <canvas id="canvas" height="500" width="500"></canvas>
+
+        <script>
+            let canvas = document.querySelector("#canvas")
+            let context = canvas.getContext('2d')
+
+
+            // When user clicks 
+            canvas.addEventListener('click', function() {
+                // These will represent where on the canvas the mouse clicked
+                // Need to locate where the user clicked so when they do it starts drawing
+                // Built in variable in JavaScript called event, this has the x and the y values in properties called offsetX, offsetY
+                let x = event.offsetX
+                let y = event.offsetY
+                
+                // Last 2 numbers represent how big the square is 
+                // x-15 + y-15 moves where the square appears when clicks, when user clicks, start drawing, 
+                // Default hangs off the lower right pointer
+                // To center what you drew under the cursor add minus whatever number
+                context.fillRect(x-15, y-15, 30, 30)
+
+                // or
+                // let size = 5 
+                // context.fillRect(x-(size/2), y-(size/2), size, size)
+            })
+        </script>
+
+    </body>
+
+</html>
