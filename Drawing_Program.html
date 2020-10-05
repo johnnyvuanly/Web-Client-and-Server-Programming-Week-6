@@ -18,11 +18,20 @@
 
 <P>Drag the mouse on the canvas</P>
 <canvas id="canvas" height="400" width="400"></canvas>
+<!-- Add input range, color types, add labels + ids-->
+<form>
+  <label for="choosecolor">Select a color:</label>
+  <input type="color" id="choosecolor" name="choosecolor">
+  <label for="circlesize">Line thickness:</label>
+  <input type="range" id="circlesize" name="circlesize">
+</form>
 
 <script>
 
   let canvas = document.querySelector('#canvas')
   let context = canvas.getContext('2d')
+  let colorInput = document.querySelector('#choosecolor') // Grab the ids
+  let rangeChanger = document.querySelector('#circlesize')
   
   // Keep track of whether the mouse button has been pressed down or not.
   // Think of this as whether the user is drawing or not, is their brush on the canvas?
@@ -46,8 +55,8 @@
     // If the mouse button is not pressed down, do not draw.
     if (!mousedown) { return }
 
-    //let color = colorInput.value
-    // Get the value of the range input
+    // Call the value of the color input
+    let color = colorInput.value
     let size = 100 // todo set to value of range input
 
     // event is a built-in variable, contains the event that triggered this function
@@ -58,8 +67,10 @@
     // Draw a filled rectangle centered under the mouse click
     // x, y is the top left corner, so shift up and left by 5 to center it under the mouse.
     
-    //context.fillStyle = color
-    context.fillRect(x-5, y-5, size, size)
+    context.beginPath() // Included so that a line isn't connected when user clicks another part of the canvas
+    context.arc(x, y, rangeChanger.value, 0, 6.3) // Get the value of the range input. 0 so that circle is drawn
+    context.fillStyle = color
+    context.stroke() // Allows us to draw the circles
 
   })
 
@@ -67,3 +78,16 @@
 
 </body>
 </html>
+
+<!-- TODO -->
+
+<!-- Draw a circles instead of a square
+Add an input type="color" to select the drawing color.  The value from a color input can be used with a context.strokeStyle or context.fillStyle statement
+Add an input type="range" to set the radius of the circles drawn -->
+
+<!-- context.beginPath();
+    context.arc(x, y, rangeChanger.value, 0, 6.3)
+    context.strokeStyle = change_color.value
+    context.stroke() -->
+
+    <!-- input type that is range -->
