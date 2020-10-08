@@ -61,5 +61,11 @@ let chart = new Chart(context, {
 
 bridgeData.forEach(function(bridge) {
     let bridgeName = bridge.name
-    console.log(bridgeName)
+    // console.log(bridgeName)
+    let bridgeSpan = bridge.span
+    // console.log(bridgeSpan)
+    chart.data.labels.push(bridgeName)
+    //console.log(chart.data.datasets[0].data)
+    chart.data.datasets[0].data.push(bridgeSpan)
+    
 })
