@@ -68,4 +68,7 @@ bridgeData.forEach(function(bridge) {
     //console.log(chart.data.datasets[0].data)
     chart.data.datasets[0].data.push(bridgeSpan)
     
+    // Without this the bars will not show even if you put the data in
+    // Remember to update 
+    chart.update()
 })
